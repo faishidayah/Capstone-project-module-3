@@ -3,80 +3,80 @@
 
 ## Business Problem Understanding
 ### 1. Background
-California adalah salah satu pasar properti paling dinamis dan menarik di dunia. California memiliki ekonomi terbesar di Amerika Serikat dan merupakan salah satu ekonomi terkuat di dunia. beberapa sektor utama yang menjadi tulang punggung perekonomian di california adalah Teknologi, pertanian , hiburan dan media. dengan lebih dari 39 juta jiwa, permintaan akan properti baik untuk tempat tinggal maupun untuk tujuan komersial terus meningkat. tetapi juga menghadapi tantangan signifikan antara lain Kombinasi harga tinggi, peraturan ketat, dan risiko lingkungan oleh karena itu penentuan harga properti memerlukan strategi yang matang.
+California is one of the most dynamic and exciting real estate markets in the world. California has the largest economy in the United States and is one of the strongest economies in the world. Some of the key sectors that form the backbone of the California economy are Technology, Agriculture, Entertainment and Media. With over 39 million people, the demand for both residential and commercial properties continues to grow. However, it also faces significant challenges including the combination of high prices, stringent regulations and environmental risks, therefore property pricing requires a well thought out strategy.
 ### 2. Problem Statement
-perusahaan ingin menetapkan harga properti yang kompetitif dan menarik di pasar California dengan tetap memastikan margin keuntungan yang optimal, tetapi juga mempertimbangkan daya tarik pembeli
+The company wants to set competitive and attractive property prices in the California market while ensuring optimal profit margins, but also considering buyer appeal.
 ### 3. Goals
-Berdasarkan permasalahan tersebut, perusahaan membutuhkan tool yang dapat membantu mereka untuk memprediksi harga rumah secara akurat. fitur-fitur yang dimiliki oleh sebuah rumah seperti lokasi rumah, usia rata-rata rumah, total ruangan, total kamar tidur dan lain-lain dapat menambah keakuratan prediksi harga rumah, sehingga bisa memberikan profit yang optimal bagi perusahaan serta harga yang menarik bagi pembeli.
+Based on these problems, companies need a tool that can help them predict house prices accurately. Features owned by a house such as the location of the house, the average age of the house, the total number of rooms, the total number of bedrooms and others can increase the accuracy of house price predictions, so that they can provide optimal profits for the company and attractive prices for buyers.
 ### 4. Analitical Approach
-Melakukan analysis data untuk mengetahui hubungan antar variabel dan menemukan pola dari fitur-fitur yang ada yang mejadi pembeda suatu rumah dengan rumah yang lain. kemudian membangun machine learning yang akan menjadi tool yang digunakan perusahaan untuk memprediksi harga rumah secara akurat
+Conducting data analysis to determine the relationship between variables and find patterns of existing features that differentiate one house from another. Then building machine learning that will be a tool used by companies to predict house prices accurately.
 ### 5. Metrics Evaluation
-Evaluasi metrik yang akan digunakan antara lain sebagai berikut:
-- MAE ==> Rata-rata nilai absolut error. Memberikan gambaran tentang seberapa besar rata-rata kesalahan dalam satuan yang sama dengan target.
-- MAPE ==> Rata-rata persentase error absolut antara nilai aktual dan prediksi. Berguna untuk mengevaluasi performa model di berbagai skala.
-- RMSE ==> Akar kuadrat dari Mean Squared Error. Mengukur rata-rata error dengan penalti untuk error besar.
-
+Evaluation metrics that will be used include the following:
+- MAE ==> Average absolute value of error. Gives an idea of ​​how big the average error is in the same unit as the target.
+- MAPE ==> Average percentage of absolute error between actual and predicted values. Useful for evaluating model performance at various scales.
+- RMSE ==> Square root of Mean Squared Error. Measures the average error with a penalty for large errors.
+- 
 ## Data Understanding
-Deskripsi Kolom:
-longitude ==> Ukuran seberapa jauh ke barat sebuah rumah; nilai yang lebih tinggi berarti lebih jauh ke barat
-latitude ==> Ukuran seberapa jauh ke utara sebuah rumah; nilai yang lebih tinggi berarti lebih jauh ke utara
-housingMedianAge ==> Usia rata-rata sebuah rumah dalam satu blok; angka yang lebih rendah berarti bangunan yang lebih baru
-totalRooms ==> Jumlah total kamar dalam satu blok
-totalBedrooms ==> Jumlah total kamar tidur dalam satu blok
-population ==> Jumlah total orang yang tinggal dalam satu blok
-households ==> Jumlah total rumah tangga, sekelompok orang yang tinggal dalam satu unit rumah, untuk satu blok
-medianIncome ==> Pendapatan rata-rata untuk rumah tangga dalam satu blok rumah (diukur dalam puluhan ribu Dolar AS)
-medianHouseValue ==> Nilai rumah rata-rata untuk rumah tangga dalam satu blok (diukur dalam Dolar AS)
-oceanProximity ==> Lokasi rumah sehubungan dengan laut/samudra
+Column Description:
+longitude ==> A measure of how far west a house is; higher values ​​mean further west
+latitude ==> A measure of how far north a house is; higher values ​​mean further north
+housingMedianAge ==> The average age of a house in a block; lower values ​​mean newer buildings
+totalRooms ==> The total number of rooms in a block
+totalBedrooms ==> The total number of bedrooms in a block
+population ==> The total number of people living in a block
+households ==> The total number of households, a group of people living in a single housing unit, for a block
+medianIncome ==> The median income for households in a block of houses (measured in tens of thousands of US Dollars)
+medianHouseValue ==> The median home value for households in a block (measured in US Dollars)
+oceanProximity ==> The location of a house in relation to the ocean
 
 ## Data Preprocesing
 1. Missing value handling
-2. Data duplikat
+2. Duplicate data
 3. Outliers handling
 4. feature engineering
-   menambah 3 kolom yaitu:
-   - rooms_per_household ==> rata-rata ruangan per rumah tangga
-   - bedrooms_per_room ==> rata-rata kamar tidur per rumah tangga
-   - pop_per_house ==> rata-rata populasi per rumah tangga
-   menghapus kolom:
-   - total_rooms
-   - total_bedrooms
-   - population
+adding 3 columns :
+- rooms_per_household ==> average rooms per household
+- bedrooms_per_room ==> average bedrooms per household
+- pop_per_house ==> average population per household
+removing columns:
+- total_rooms
+- total_bedrooms
+- population
 5. data correlation
 
 ## Modelling 
-1. One hot encoding kolom ocean_proximity
+1. One hot encoding ocean_proximity column
 2. Data Splitting
-   - train size ==> 80%
-   - test size ==> 20%
-   - random state ==> 42
+- train size ==> 80%
+- test size ==> 20%
+- random state ==> 42
 3. Model selection
-   model yang digunakan adalah XGBoost karena mendapat score terbaik berdasarkan benchmarking
-4. tuning
-   hyperparameter tuning yang akan digunakan adalah:
-   - max_depth ==> 7
-   - learning rate ==> 0.1
-   - n_estimators ==>  188
-   - subsample ==> 0.9
-   - gamma ==> 3
-   - cosample_bytree 0.7
-   - reg_alpha 0.05994842503189409
-5. perbandingan score sebelum dan sesudah tuning:
-   Setelah dilakukan tuning, score RMSE, MAE dan MAPE mengalami penurunan yang artinya model mengalami peningkatan performa meskipun tidak signifikan.
-   - RMSE 42548.726617 ==> 41424.476807
-   - MAE 28985.347693 ==> 27738.313086
-   - MAPE 0.170032 ==> 0.161551
+The model used is XGBoost because it gets the best score based on benchmarking
+4. Tuning
+The tuning hyperparameters to be used are:
+- max_depth ==> 7
+- learning rate ==> 0.1
+- n_estimators ==> 188
+- subsample ==> 0.9
+- gamma ==> 3
+- cosample_bytree 0.7
+- reg_alpha 0.05994842503189409
+5. Comparison of scores before and after tuning:
+After tuning, the RMSE, MAE and MAPE scores decreased, which means that the model experienced an increase in performance, although not significant.
+- RMSE 42548.726617 ==> 41424.476807 
+- MAE 28985.347693 ==> 27738.313086 
+- MAPE 0.170032 ==> 0.161551
   
 ## Conclusion
-- berdasarkan pemodelan yang sudah dilakukan, fitur __'ocean_proximity'__ dan __'median_income'__ merupakan fitur yang paling berpengaruh terhadap __'median_house_value'__
-- Metrik evaluasi yang digunakan adalah MAE, MAPE dan RMSE. score MAE ==> 27738.31 dan MAPE ==> 16.1%, sehingga kita dapat menyimpulkan bahwa prediksi harga rata-rata model akan meleset sekitar 16% atau 27738.31 USD dari harga yang seharusnya. model yang dibuat ini digunakan untuk memprediksi harga properti/rumah yang ada di california tetapi memiliki limitasi yang mana model hanya bisa memprediksi __'median_house_value'__ pada rentang 14.999 hingga 480275.0 USD. 
-- tetapi tidak menutup kemungkinan juga prediksi model meleset lebih jauh dari nilai aktual nya baik itu overestimation maupun underestimation. hal ini dikarenakan terbatasnya fitur yang terdapat pada dataset sehingga model hanya memiliki sedikit informasi penting yang dapat membantu menjelaskan nilai target.
+- based on the modeling that has been done, the features __'ocean_proximity'__ and __'median_income'__ are the features that have the most influence on __'median_house_value'__
+- The evaluation metrics used are MAE, MAPE and RMSE. MAE score ==> 27738.31 and MAPE ==> 16.1%, so we can conclude that the average price prediction of the model will miss around 16% or 27738.31 USD from the actual price. The model created is used to predict property/house prices in California but has limitations where the model can only predict __'median_house_value'__ in the range of 14,999 to 480275.0 USD.
+- but it is also possible that the model's prediction will miss further from its actual value, either overestimation or underestimation. This is due to the limited features contained in the dataset so that the model only has a little important information that can help explain the target value.
   
 ## Recommendation
-1. untuk dataset: 
-- hanya ada sedikit fitur yang berkorelasi tinggi pada target, maka dari itu perlu ditambahkan beberapa fitur seperti __luas bangunan__, __luas tanah__, __fasilitas rumah__, dan jarak perumahan ke fasilitas umum (__pusat kota__, __bandara__, __mall__ dan lain-lain)
-- dataset ini merupakan informasi dari sensus California tahun 1990. untuk memprediksi harga perumahan untuk saat ini dibutuhkan data yang lebih update. karena dataset sudah berusia 34 tahun yang pastinya harga perumahan sudah terkena dampak inflasi
-2.  untuk model machine learning: 
-- tuning menggunakan __GridSearch__ kamudian hyperparameter optimization menggunakan __Optuna__ atau __Bayesian Optimization__ untuk proses optimasi lebih cepat dan efisien
-3.  untuk developer: 
-- untuk keuntungan yang maksimal, developer perlu mempertimbangkan lokasi pembangunan rumah. semakin dekat lokasi rumah/properti dengan laut maka semakin tinggi harga rumah/properti tersebut.
+1. for dataset:
+- there are only a few features that are highly correlated with the target, therefore it is necessary to add several features such as __building area__, __land area__, __house facilities__, and distance of housing to public facilities (__city center__, __airport__, __mall__ and others)
+- this dataset is information from the 1990 California census. to predict current housing prices, more updated data is needed. because the dataset is 34 years old, of course housing prices have been affected by inflation
+2. for machine learning models:
+- tuning using __GridSearch__ then hyperparameter optimization using __Optuna__ or __Bayesian Optimization__ for a faster and more efficient optimization process
+3. for developers:
+- for maximum profit, developers need to consider the location of the house construction. the closer the location of the house/property to the sea, the higher the price of the house/property.
